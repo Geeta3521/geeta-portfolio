@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geeta A N | AI & ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0E14;
+    --bg-soft: #10161F;
+    --bg-card: #131A24;
+    --line: #1F2A38;
+    --text: #E7ECF2;
+    --text-dim: #8A97A8;
+    --accent: #3FE0C5;
+    --accent-dim: #1F4A44;
+    --amber: #FFB454;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  [data-theme="light"] {
+    --bg: #F7F8FA;
+    --bg-soft: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --line: #E2E6EB;
+    --text: #11161D;
+    --text-dim: #5C6878;
+    --accent: #0E9E8A;
+    --accent-dim: #D5F2EE;
+    --amber: #D9851D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-size: 14px;
+    font-family: var(--mono);
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+  .nav-links a:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+  .theme-toggle {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+  }
+  .theme-toggle:hover, .theme-toggle:focus-visible { border-color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 800px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding: 60px 0 60px; }
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow .dash { width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+
+  .typing-line {
+    font-family: var(--mono);
+    font-size: clamp(15px, 2vw, 19px);
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+  }
+  .typing-line .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 18px;
+    background: var(--accent);
+    margin-left: 4px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero p.lead {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono);
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #06120F;
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible { box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible { border-color: var(--accent); color: var(--accent); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Neural canvas */
+  .neural-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  #neural-canvas { width: 100%; height: 100%; display: block; }
+
+  /* ===== SECTION COMMON ===== */
+  section { padding: 90px 0; border-top: 1px solid var(--line); }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; gap: 30px; } }
+
+  .about-text p { color: var(--text-dim); margin-bottom: 16px; font-size: 15.5px; }
+  .about-text strong { color: var(--text); font-weight: 600; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .stat-card .num {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-card .label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  .focus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .focus-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--text-dim);
+  }
+
+  /* ===== SKILLS ===== */
+  .skill-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 28px;
+  }
+  .skill-col h4 {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--amber);
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .skill-col ul { list-style: none; }
+  .skill-col li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .skill-col li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== PROJECTS ===== */
+  .filter-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover, .filter-btn:focus-visible { color: var(--text); border-color: var(--accent); }
+  .filter-btn.active {
+    background: var(--accent);
+    color: #06120F;
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+  .filter-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .project-card.hidden { display: none; }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .project-card h3 {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .project-card p.desc {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 16px;
+    flex-grow: 1;
+  }
+  .tech-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .tech-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+  .project-links {
+    display: flex;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .project-links a {
+    color: var(--text);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .project-links a:hover, .project-links a:focus-visible { color: var(--accent); border-color: var(--accent); }
+
+  /* ===== CERTS ===== */
+  .cert-list { display: grid; gap: 12px; }
+  .cert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14.5px;
+  }
+  .cert-item .org {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  /* ===== GITHUB ===== */
+  .github-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 700px) { .github-grid { grid-template-columns: 1fr; } }
+  .github-grid img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+
+  /* ===== CONTACT ===== */
+  .contact-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .contact-pill {
+    font-family: var(--mono);
+    font-size: 14px;
+    padding: 12px 20px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .contact-pill:hover, .contact-pill:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+  footer {
+    padding: 30px 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">geeta.ai</div>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#certifications">certs</a>
+      <a href="#contact">contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dash"></span> AVAILABLE FOR INTERNSHIPS & FULL-TIME 2026</div>
+      <h1>Geeta A. N.<br>builds <span class="accent">intelligent systems</span>.</h1>
+      <div class="typing-line"><span id="typedText"></span><span class="cursor"></span></div>
+      <p class="lead">AIML engineering student specializing in deep learning, computer vision, and applied generative AI — turning research ideas into deployed, working products.</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="/resume.pdf" download class="btn btn-ghost">Download Resume</a>
+      </div>
+    </div>
+    <div class="neural-wrap">
+      <canvas id="neural-canvas" aria-hidden="true"></canvas>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-label">// 01_about</div>
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>final-year B.E. student in Artificial Intelligence & Machine Learning</strong> at BMS College of Engineering, Bengaluru. My work sits at the intersection of <strong>deep learning research and real-world deployment</strong> — I don't just train models, I ship them.</p>
+        <p>My flagship project applies <strong>EfficientNetB0 and Grad-CAM explainable AI</strong> to detect diabetic retinopathy from retinal scans, deployed as an interactive Streamlit application. I'm currently building an <strong>AI Career Copilot</strong> — a multi-stage platform using the Gemini API for resume parsing, ATS scoring, skill-gap analysis, and interview simulation.</p>
+        <div class="focus-tags">
+          <span class="focus-tag">Computer Vision</span>
+          <span class="focus-tag">Explainable AI</span>
+          <span class="focus-tag">Generative AI</span>
+          <span class="focus-tag">Agentic Systems</span>
+          <span class="focus-tag">Model Deployment</span>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="num">7.7</div><div class="label">CGPA</div></div>
+        <div class="stat-card"><div class="num">7th</div><div class="label">SEMESTER</div></div>
+        <div class="stat-card"><div class="num">5+</div><div class="label">AI/ML PROJECTS</div></div>
+        <div class="stat-card"><div class="num">2026</div><div class="label">GRAD YEAR</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">// 02_skills</div>
+    <h2 class="section-title">Technical Toolkit</h2>
+    <div class="skill-cols">
+      <div class="skill-col">
+        <h4>AI / ML</h4>
+        <ul>
+          <li>Python</li>
+          <li>TensorFlow</li>
+          <li>PyTorch</li>
+          <li>Scikit-Learn</li>
+          <li>OpenCV</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>GENERATIVE AI</h4>
+        <ul>
+          <li>Gemini API</li>
+          <li>Prompt Engineering</li>
+          <li>RAG Pipelines</li>
+          <li>LangChain Basics</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>WEB / DEPLOYMENT</h4>
+        <ul>
+          <li>Streamlit</li>
+          <li>Flask</li>
+          <li>React</li>
+          <li>HTML / CSS / JS</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>DATA & TOOLS</h4>
+        <ul>
+          <li>NumPy / Pandas</li>
+          <li>MySQL / MongoDB</li>
+          <li>Git / GitHub</li>
+          <li>VS Code</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-label">// 03_projects</div>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="filter-row" role="group" aria-label="Filter projects by category">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="cv">Computer Vision</button>
+      <button class="filter-btn" data-filter="genai">Generative AI</button>
+      <button class="filter-btn" data-filter="ml">ML</button>
+    </div>
+    <div class="project-grid">
+
+      <article class="project-card" data-cat="cv genai">
+        <div class="project-top">
+          <h3>Diabetic Retinopathy Detection</h3>
+          <span class="project-tag">Flagship</span>
+        </div>
+        <p class="desc">Deep learning system to classify diabetic retinopathy severity from retinal fundus images, with Grad-CAM heatmaps for clinical explainability — deployed as an interactive web app.</p>
+        <div class="tech-row">
+          <span class="tech-pill">EfficientNetB0</span>
+          <span class="tech-pill">Grad-CAM</span>
+          <span class="tech-pill">Streamlit</span>
+          <span class="tech-pill">TensorFlow</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Geeta3521/diabetic-retinopathy-detection" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="genai">
+        <div class="project-top">
+          <h3>AI Career Copilot</h3>
+          <span class="project-tag">In Progress</span>
+        </div>
+        <p class="desc">A multi-page placement intelligence platform: resume parsing, ATS scoring, skill-gap analysis, personalized roadmap generation, mock interview simulation, and GitHub profile analysis.</p>
+        <div class="tech-row">
+          <span class="tech-pill">Gemini API</span>
+          <span class="tech-pill">Streamlit</span>
+          <span class="tech-pill">Python</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Geeta3521/ai-career-copilot" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="ml">
+        <div class="project-top">
+          <h3>Loan Prediction System</h3>
+          <span class="project-tag">ML</span>
+        </div>
+        <p class="desc">End-to-end ML pipeline predicting loan approval likelihood using a tuned decision tree classifier, deployed with a simple Streamlit interface for instant predictions.</p>
+        <div class="tech-row">
+          <span class="tech-pill">Decision Tree</span>
+          <span class="tech-pill">Pandas</span>
+          <span class="tech-pill">Streamlit</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Geeta3521/loan-prediction-ml" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="genai">
+        <div class="project-top">
+          <h3>TesterAgents-AI</h3>
+          <span class="project-tag">Multi-Agent</span>
+        </div>
+        <p class="desc">A multi-agent AI system for static code review — performs security analysis, code quality checks, dependency analysis, GitHub repo scanning, and automated health scoring with CSV reports.</p>
+        <div class="tech-row">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Multi-Agent AI</span>
+          <span class="tech-pill">GitHub API</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Geeta3521/TesterAgents-AI" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-label">// 04_certifications</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-list">
+      <div class="cert-item">
+        <span>Deep Learning Specialization</span>
+        <span class="org">Coursera</span>
+      </div>
+      <div class="cert-item">
+        <span>Machine Learning with Python</span>
+        <span class="org">NPTEL</span>
+      </div>
+      <div class="cert-item">
+        <span>Generative AI Fundamentals</span>
+        <span class="org">Google</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-label">// 05_contact</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p style="color: var(--text-dim); margin-bottom: 28px; max-width: 480px;">Open to AI/ML internships, research collaborations, and placement opportunities for the 2026 cycle.</p>
+    <div class="contact-row">
+      <a href="mailto:geetaajit.ai24@bmsce.ac.in" class="contact-pill">✉ Email</a>
+      <a href="https://www.linkedin.com/in/geeta-nemgouda" class="contact-pill" target="_blank" rel="noopener">in LinkedIn</a>
+      <a href="https://github.com/Geeta3521" class="contact-pill" target="_blank" rel="noopener">⌥ GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  designed & built by Geeta A. N. — 2026
+</footer>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  themeToggle.addEventListener('click', () => {
+    const isDark = body.getAttribute('data-theme') === 'dark';
+    body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+  });
+
+  // Typing animation
+  const phrases = [
+    "AI Engineer",
+    "Computer Vision Enthusiast",
+    "Generative AI Developer",
+    "Deep Learning Practitioner"
+  ];
+  const typedEl = document.getElementById('typedText');
+  let phraseIndex = 0, charIndex = 0, deleting = false;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function typeLoop() {
+    const current = phrases[phraseIndex];
+    if (!deleting) {
+      typedEl.textContent = current.slice(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1400);
+        return;
+      }
+    } else {
+      typedEl.textContent = current.slice(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+    }
+    setTimeout(typeLoop, deleting ? 35 : 65);
+  }
+  if (prefersReducedMotion) {
+    typedEl.textContent = phrases[0];
+  } else {
+    typeLoop();
+  }
+
+  // Project filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const cats = card.dataset.cat.split(' ');
+        card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+      });
+    });
+  });
+
+  // Neural network canvas animation
+  const canvas = document.getElementById('neural-canvas');
+  const ctx = canvas.getContext('2d');
+  let nodes = [];
+  const NODE_COUNT = 22;
+
+  function resizeCanvas() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+  }
+
+  function initNodes() {
+    nodes = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2 + 1.5
+      });
+    }
+  }
+
+  function getAccentColor() {
+    return getComputedStyle(document.body).getPropertyValue('--accent').trim();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const accent = getAccentColor();
+    const maxDist = canvas.width * 0.28;
+
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      a.x += a.vx;
+      a.y += a.vy;
+      if (a.x < 0 || a.x > canvas.width) a.vx *= -1;
+      if (a.y < 0 || a.y > canvas.height) a.vy *= -1;
+
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = accent;
+          ctx.globalAlpha = (1 - dist / maxDist) * 0.35;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = accent;
+      ctx.fill();
+    }
+    if (!prefersReducedMotion) requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resizeCanvas(); });
+  resizeCanvas();
+  initNodes();
+  draw();
+</script>
+
+</body>
+</html>
